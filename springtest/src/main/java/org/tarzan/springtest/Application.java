@@ -10,14 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import hello.Customer;
+import jdbc.Customer;
+import jdbc.CustomerRepository;
 
 //same as @Configuration @EnableAutoConfiguration
 // @ComponentScan
 @SpringBootApplication
-public class Application implements CommandLineRunner {
+public class Application {
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
 	public static void main(String[] args) {
@@ -25,12 +27,49 @@ public class Application implements CommandLineRunner {
 		System.setProperty("spring.devtools.restart.enabled", "false");
 		SpringApplication.run(Application.class, args);
 	}
+	
+	@Bean
+	public CommandLineRunner demo(CustomerRepository repository) {
+		return (args) -> {
+			// save a couple of customers
+			repository.save(new Customer("Jack", "Bauer"));
+			repository.save(new Customer("Chloe", "O'Brian"));
+			repository.save(new Customer("Kim", "Bauer"));
+			repository.save(new Customer("David", "Palmer"));
+			repository.save(new Customer("Michelle", "Dessler"));
 
+			// fetch all customers
+			log.info("Customers found with findAll():");
+			log.info("-------------------------------");
+			for (Customer customer : repository.findAll()) {
+				log.info(customer.toString());
+			}
+			log.info("");
+
+			// fetch an individual customer by ID
+			Customer customer = repository.findOne(1L);
+			log.info("Customer found with findOne(1L):");
+			log.info("--------------------------------");
+			log.info(customer.toString());
+			log.info("");
+
+			// fetch customers by last name
+			log.info("Customer found with findByLastName('Bauer'):");
+			log.info("--------------------------------------------");
+			for (Customer bauer : repository.findByLastName("Bauer")) {
+				log.info(bauer.toString());
+			}
+			log.info("");
+		};
+	}
+	
+	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	@Override
-	public void run(String... arg0) throws Exception {
+//	@Bean
+	public CommandLineRunner h2Jdbc() {
+		return (args) -> {
 		log.info("Creating tables");
 
 		jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
@@ -49,9 +88,10 @@ public class Application implements CommandLineRunner {
 		log.info("Querying for customer records where first_name = 'Josh':");
 		jdbcTemplate
 				.query("SELECT id, first_name, last_name FROM customers WHERE first_name = ?",
-						new Object[] { "Josh" }, (rs, rowNum) -> new Customer(rs.getLong("id"),
+						new Object[] { "Josh" }, (rs, rowNum) -> new hello.Customer(rs.getLong("id"),
 								rs.getString("first_name"), rs.getString("last_name")))
 				.forEach(customer -> log.info(customer.toString()));
+		};
 	}
 
 }
