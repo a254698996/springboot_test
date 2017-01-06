@@ -1,4 +1,4 @@
-package org.tarzan.springtest;
+package org.tarzan.springtest.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @EnableAutoConfiguration
-public class Example {
+public class LoginController {
+
 	static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	@RequestMapping("/")
+	@RequestMapping("/user")
 	String home() {
 		System.out.println("request comming " + sdf.format(new Date()));
 		return "Hello World!";
 	}
-
 }

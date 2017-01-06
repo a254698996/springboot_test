@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.tarzan.springtest.jpa.Customer;
-import org.tarzan.springtest.jpa.CustomerRepository;
+import org.tarzan.springtest.dao.CustomerRepository;
+import org.tarzan.springtest.entity.Customer;
  
 
 //same as @Configuration @EnableAutoConfiguration
@@ -25,7 +25,7 @@ public class Application {
 		SpringApplication.run(Application.class );
 	}
 	
-	@Bean
+//	@Bean
 	public CommandLineRunner demo(CustomerRepository repository) {
 		return (args) -> {
 			// save a couple of customers
