@@ -1,4 +1,4 @@
-package jdbc;
+package org.tarzan.springtest.jpa;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;

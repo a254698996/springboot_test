@@ -1,4 +1,4 @@
-package jdbc;
+package org.tarzan.springtest.jpa;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

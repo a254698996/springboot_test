@@ -1,4 +1,4 @@
-package hello;
+package org.tarzan.springtest.hello;
 
 public class Customer {
 	private long id;
