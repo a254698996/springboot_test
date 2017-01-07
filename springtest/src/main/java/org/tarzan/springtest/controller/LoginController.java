@@ -13,8 +13,14 @@ public class LoginController {
 
 	static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+	@RequestMapping("")
+	public String home() {
+		System.out.println("request comming " + sdf.format(new Date()) + " home ");
+		return "home";
+	}
+
 	@RequestMapping("/user")
-	String home() {
+	public String user() {
 		System.out.println("request comming " + sdf.format(new Date()));
 		return "Hello World!";
 	}
