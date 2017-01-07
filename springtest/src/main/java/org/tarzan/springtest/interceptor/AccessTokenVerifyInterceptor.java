@@ -20,7 +20,7 @@ import org.tarzan.springtest.service.IValidationService;
  * Access Token拦截器 Created by bysocket on 16/4/18.
  */
 
-@Component
+//@Component
 public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
 
 	@Autowired
