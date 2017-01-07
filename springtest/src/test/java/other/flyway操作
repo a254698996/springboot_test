@@ -2,4 +2,8 @@ flyway 官网
 https://flywaydb.org/getstarted/firststeps/maven#href=https%3A%2F%2Fgithub.com%2Fflyway%2Fflyway&text=Star&data-count-api=%2Frepos%2Fflyway%2Fflyway%23stargazers_count&data-count-href=%2Fflyway%2Fflyway%2Fstargazers&data-count-aria-label=%23%20stargazers%20on%20GitHub&data-style=&data-icon=&aria-label=Star%20flyway%2Fflyway%20on%20GitHub
 
 cd 到项目 目录下 执行 下面 语句 -X 为显示 debug 信息
+执行  /springtest/src/main/resources/db/migration/Vxx_xxxxx_xx_xx.sql
 E:\zzz_springBoot_test\springtest>mvn flyway:migrate -X
+
+清除 库中所有表
+mvn flyway:clean 
