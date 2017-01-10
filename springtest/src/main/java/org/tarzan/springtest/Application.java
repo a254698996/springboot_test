@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.tarzan.springtest.dao.CustomerRepository;
 import org.tarzan.springtest.entity.Customer;
  
@@ -16,6 +17,7 @@ import org.tarzan.springtest.entity.Customer;
 //same as @Configuration @EnableAutoConfiguration
 @ComponentScan
 @SpringBootApplication
+@EnableScheduling
 public class Application {
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
