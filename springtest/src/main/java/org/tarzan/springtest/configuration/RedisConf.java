@@ -25,8 +25,11 @@ public class RedisConf extends CachingConfigurerSupport {
 
 	@Value("${spring.redis.host}")
 	String host;
+	
 	@Value("${spring.redis.port}")
 	int port;
+	
+	// seconds 
 	@Value("${spring.redis.defaultExpireTime}")
 	Long defaultExpireTime = 30 * 60L;
 
@@ -76,6 +79,7 @@ public class RedisConf extends CachingConfigurerSupport {
 	@Bean
 	public StringRedisTemplate redisTemplate(RedisConnectionFactory factory) {
 		StringRedisTemplate template = new StringRedisTemplate(factory);
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
 		ObjectMapper om = new ObjectMapper();
 		om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);

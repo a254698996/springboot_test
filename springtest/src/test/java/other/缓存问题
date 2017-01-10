@@ -1,0 +1,4 @@
+RedisConf 为 缓存配置类
+wiselyKeyGenerator 方法 为生成 缓存的 key 
+代理对象 + 方法名称  + 参数
+com.sun.proxy.$Proxy100findByFirstName张
